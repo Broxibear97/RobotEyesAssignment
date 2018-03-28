@@ -53,10 +53,10 @@ pRight = imread('bwtest2.jpg');
      end
  end
  
-figure('Name', 'Clearly the better option');
+figure
 imshow(dispmap);
 
-figure('Name', 'Matlabs very own disparity map function'); 
+figure (Matlab Disparity)
 imshow(disparity(pLeft, pRight));
 
 
