@@ -1,7 +1,7 @@
 function [best_value, best_point, disparity_vector] = PIXEL_DISP(current_row, current_col,...
     pixel_value, right_image, block_size, disparity_range)
 
-    best_value = -999999;
+    best_value = 999999;
     best_point = [-1, -1];
     disparity_vector = [-1, -1];
     
@@ -35,10 +35,13 @@ function [best_value, best_point, disparity_vector] = PIXEL_DISP(current_row, cu
         window = right_image(min_col : max_col, min_row : max_row);
         for col = 1 : size(window,1)
             for row = 1 : size(window, 2)
-                ssd_value = ssd(pixel_value, window(col, row));               
-                if(ssd_value > best_value)
+                ssd_value = ssd(pixel_value, window(col, row));   
+                if(ssd_value == 0 && ssd_value ~= 1)
+                    disp("SSD: " + ssd_value);
+                end
+                if(ssd_value < best_value)
                     best_value = ssd_value;
-                    best_point = [current_col + col, current_row + row];
+                    best_point = [col, row];
                 end
             end
         end        
