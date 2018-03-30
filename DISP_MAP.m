@@ -16,7 +16,7 @@ function [disparity_map] = DISP_MAP(left_image_filename, right_image_filename,..
     for col = 1 : max_cols
         for row = 1 : max_rows 
            [best_value, best_point, disparity_vector] = PIXEL_DISP(row, col, p_left(col, row), p_right, block_size, disparity_range);         
-           disparity_map(col, row) = best_value;
+           disparity_map(col, row) = abs(best_value);
            
            % resulting image is probably really dark because i havent
            % mapped the value between 0 and 255 yet.
